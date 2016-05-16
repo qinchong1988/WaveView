@@ -5,6 +5,8 @@
 		<attr name="above_wave_color" format="color"/>
 		<attr name="blow_wave_color" format="color"/>
 		<attr name="progress" format="integer"/>
+        <attr name="maxprogress" format="integer"/>
+        <attr name="circle_padding" format="dimension"/>
         <attr name="wave_length" format="enum">
             <enum name="large" value="1"/>
             <enum name="middle" value="2"/>

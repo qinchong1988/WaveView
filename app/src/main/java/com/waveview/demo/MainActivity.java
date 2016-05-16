@@ -1,41 +1,39 @@
 package com.waveview.demo;
 
-import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.SeekBar;
-
-import com.john.waveview.WaveView;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 /**
  * Created by kai.wang on 6/17/14.
  */
-public class MainActivity extends Activity {
-
-    private SeekBar seekBar;
-    private WaveView waveView;
+public class MainActivity extends ListActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        ListAdapter adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                new String[]{"ware", "circle ware"}
+        );
+        setListAdapter(adapter);
+    }
 
-        seekBar = (SeekBar) findViewById(R.id.seek_bar);
-        waveView = (WaveView) findViewById(R.id.wave_view);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                waveView.setProgress(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        switch (position) {
+            case 0:
+                Intent intent0 = new Intent(this, WaveActivity.class);
+                startActivity(intent0);
+                break;
+            case 1:
+                Intent intent1 = new Intent(this, CircleWaveActivity.class);
+                startActivity(intent1);
+                break;
+        }
     }
 }
